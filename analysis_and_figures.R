@@ -208,6 +208,28 @@ boxplot(specialist.richness ~ canopy.condition, data = df,
 stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
 
+
+png("Figures/Specialists_canopy_condition_panel.png", width = 2300, height = 2000, pointsize = 30)
+
+par(mfrow=c(2,1))
+par(mar=c(5,7,1,2))
+
+boxplot(specialist.abundance ~ canopy.condition, data = df,
+        col = c("#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#238B45"),
+        ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 1.6, cex.axis = 1.5)
+stripchart(specialist.abundance ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
+           vertical = TRUE, method = "jitter", jitter = 0.2)
+#text(0.5,7.4, "A", pos = 3, font = 1, cex = 1.5)
+
+boxplot(specialist.richness ~ canopy.condition, data = df,
+        col = c("#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#2171B5"),
+        ylim = c(0,4), ylab = "Specialist Richness", xlab = "Canopy Condition", cex.lab = 1.6, cex.axis = 1.5)
+stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
+           vertical = TRUE, method = "jitter", jitter = 0.2)
+#text(0.5,7.4, "C", pos = 3, font = 1, cex = 1.5)
+
+dev.off()
+
 ################################################################################
 # rarefaction analysis
 str(df)
