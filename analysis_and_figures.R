@@ -35,6 +35,7 @@ library(glmmTMB)
 library(DHARMa) #
 library(bbmle)
 library(fossil) #
+library(RColorBrewer) #
 
 colSums(df[c(11:21)])
 
@@ -235,3 +236,20 @@ jack2(green[,c(13,15:16,18)], taxa.row = FALSE, abund = TRUE)
 
 jack1(black[,c(13,15:16,18)], taxa.row = FALSE, abund = TRUE)
 jack2(black[,c(13,15:16,18)], taxa.row = FALSE, abund = TRUE)
+
+
+brewer.pal(9, "Greens")
+
+png("Figures/Fig_Rarefaction_Specialists.png", width = 1800, height = 1000, pointsize = 30)
+
+par(mar=c(5,7,4,2))
+
+plot(sp.black, pch = 19, col = "black", xvar = c("individuals"), lty = 4, lwd = 4, cex.lab = 1.5, cex.axis = 1.2,
+     ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 40), ylim = c(0, 5))
+plot(sp.green, add = TRUE, pch = 15, xvar = c("individuals"), lty = 1, lwd = 4, cex.lab = 1.5, cex.axis = 1.2, col = "#74C476")
+
+legend("topright", legend = c("Green ash", "Black ash"),
+       lty = c(1,2,3,4), cex = 1.5, bty = "n", lwd = 4,
+       col = c("#74C476", "black"))
+
+dev.off()
