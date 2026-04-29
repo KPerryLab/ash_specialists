@@ -22,27 +22,22 @@ str(df)
 summary(df)
 
 # load packages
-library(lme4) #
-library(lmerTest) #
-library(blmeco)
-library(emmeans) #
-library(car) #
-library(vegan) #
-library(hillR) #
-library(tidyverse)
-library(performance)
-library(glmmTMB)
-library(DHARMa) #
-library(bbmle)
-library(fossil) #
-library(RColorBrewer) #
+library(lme4)
+library(lmerTest)
+library(emmeans)
+library(car)
+library(vegan)
+library(hillR)
+library(DHARMa)
+library(fossil)
+library(RColorBrewer)
 
 colSums(df[c(11:21)])
 
 ## Response variables:
-# Abundance of specialists (possion)
-# Total abundance of insects (only the relevant families) (possion)
-# Species richness of specialists (possion)
+# Abundance of specialists
+# Total abundance of insects (only the relevant families)
+# Species richness of specialists
 
 #________________________________________________________________________________
 # Total specialists ----
@@ -219,14 +214,24 @@ boxplot(specialist.abundance ~ canopy.condition, data = df,
         ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 1.6, cex.axis = 1.5)
 stripchart(specialist.abundance ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-#text(0.5,7.4, "A", pos = 3, font = 1, cex = 1.5)
+text(5.5,4.5, "A", pos = 3, font = 2, cex = 1.5)
+text(1,4.2, "a", pos = 3, font = 1, cex = 1.2)
+text(5,4.2, "b", pos = 3, font = 1, cex = 1.2)
+text(2,3.2, "ab", pos = 3, font = 1, cex = 1.2)
+text(3,3.2, "ab", pos = 3, font = 1, cex = 1.2)
+text(4,2.2, "ab", pos = 3, font = 1, cex = 1.2)
 
 boxplot(specialist.richness ~ canopy.condition, data = df,
         col = c("#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#2171B5"),
         ylim = c(0,4), ylab = "Specialist Richness", xlab = "Canopy Condition", cex.lab = 1.6, cex.axis = 1.5)
 stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-#text(0.5,7.4, "C", pos = 3, font = 1, cex = 1.5)
+text(5.5,3.6, "B", pos = 3, font = 2, cex = 1.5)
+text(1,3.2, "a", pos = 3, font = 1, cex = 1.2)
+text(4,1.2, "b", pos = 3, font = 1, cex = 1.2)
+text(5,1.2, "b", pos = 3, font = 1, cex = 1.2)
+text(2,2.2, "ab", pos = 3, font = 1, cex = 1.2)
+text(3,2.2, "ab", pos = 3, font = 1, cex = 1.2)
 
 dev.off()
 
