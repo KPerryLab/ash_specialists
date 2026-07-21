@@ -70,6 +70,13 @@ testOutliers(res.total.specialists.mod.1)
 summary(total.specialists.mod1)
 Anova(total.specialists.mod1)
 
+# random intercepts
+rand_ints_total.specialists.mod1 <- ranef(total.specialists.mod1)$plot.id$`(Intercept)`
+hist(rand_ints_total.specialists.mod1)
+qqnorm(rand_ints_total.specialists.mod1)
+qqline(rand_ints_total.specialists.mod1)
+
+
 ##
 # run the mod2: canopy condition
 total.specialists.mod2 <- glmer(specialist.abundance ~ canopy.condition + 
@@ -87,6 +94,11 @@ testZeroInflation(res.total.specialists.mod.2)
 summary(total.specialists.mod2)
 Anova(total.specialists.mod2)
 emmeans(total.specialists.mod2, pairwise ~ canopy.condition)
+
+rand_ints_total.specialists.mod2 <- ranef(total.specialists.mod2)$plot.id$`(Intercept)`
+hist(rand_ints_total.specialists.mod2)
+qqnorm(rand_ints_total.specialists.mod2)
+qqline(rand_ints_total.specialists.mod2)
 
 boxplot(specialist.abundance ~ canopy.condition, data = df, 
         xlab = "Canopy Condition", ylab = "Specialist Abundance")
@@ -123,6 +135,11 @@ testZeroInflation(res.total.insects.mod.1)
 summary(total.insects.mod1)
 Anova(total.insects.mod1)
 
+rand_ints_total.insects.mod1 <- ranef(total.insects.mod1)$plot.id$`(Intercept)`
+hist(rand_ints_total.insects.mod1)
+qqnorm(rand_ints_total.insects.mod1)
+qqline(rand_ints_total.insects.mod1)
+
 ##
 # run the mod2: canopy condition
 total.insects.mod2 <- glmer(relevantfam.abundance ~ canopy.condition + 
@@ -136,13 +153,14 @@ plotQQunif(res.total.insects.mod.2)
 testCategorical(res.total.insects.mod.2, catPred = df$canopy.condition)
 testZeroInflation(res.total.insects.mod.2)
 
-# model 1 outputs
-summary(total.insects.mod1)
-Anova(total.insects.mod1)
-
 # model 2 outputs
 summary(total.insects.mod2)
 Anova(total.insects.mod2)
+
+rand_ints_total.insects.mod2 <- ranef(total.insects.mod2)$plot.id$`(Intercept)`
+hist(rand_ints_total.insects.mod2)
+qqnorm(rand_ints_total.insects.mod2)
+qqline(rand_ints_total.insects.mod2)
 
 boxplot(relevantfam.abundance ~ canopy.condition, data = df, 
         xlab = "Canopy Condition", ylab = "Total Insects")
@@ -179,6 +197,11 @@ testZeroInflation(res.rich.mod.1)
 summary(rich.mod1)
 Anova(rich.mod1)
 
+rand_ints_rich.mod1 <- ranef(rich.mod1)$plot.id$`(Intercept)`
+hist(rand_ints_rich.mod1)
+qqnorm(rand_ints_rich.mod1)
+qqline(rand_ints_rich.mod1)
+
 ##
 # run the mod2: canopy condition
 rich.mod2 <- glmer(specialist.richness ~ canopy.condition + 
@@ -197,6 +220,11 @@ testZeroInflation(res.rich.mod.2)
 summary(rich.mod2)
 Anova(rich.mod2)
 emmeans(rich.mod2, pairwise ~ canopy.condition)
+
+rand_ints_rich.mod2 <- ranef(rich.mod2)$plot.id$`(Intercept)`
+hist(rand_ints_rich.mod2)
+qqnorm(rand_ints_rich.mod2)
+qqline(rand_ints_rich.mod2)
 
 boxplot(specialist.richness ~ canopy.condition, data = df, 
         xlab = "Canopy Condition", ylab = "Specialist Richness")
