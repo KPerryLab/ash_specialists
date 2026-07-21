@@ -32,7 +32,7 @@ library(DHARMa)
 library(fossil)
 library(RColorBrewer)
 
-colSums(df[c(11:21)])
+colSums(df[c(11:18)])
 
 ## Response variables:
 # Abundance of specialists
@@ -60,7 +60,7 @@ total.specialists.mod1 <- glmer(specialist.abundance ~ dbh + ash.species +
 # check assumptions
 testDispersion(total.specialists.mod1)
 res.total.specialists.mod.1 <- simulateResiduals(total.specialists.mod1)
-plot(res.total.specialists.mod.1)
+plotQQunif(res.total.specialists.mod.1)
 plotResiduals(res.total.specialists.mod.1, form = df$dbh)
 testCategorical(res.total.specialists.mod.1, catPred = df$ash.species)
 testZeroInflation(res.total.specialists.mod.1)
@@ -79,7 +79,7 @@ total.specialists.mod2 <- glmer(specialist.abundance ~ canopy.condition +
 # check assumptions
 testDispersion(total.specialists.mod2)
 res.total.specialists.mod.2 <- simulateResiduals(total.specialists.mod2)
-plot(res.total.specialists.mod.2)
+plotQQunif(res.total.specialists.mod.2)
 testCategorical(res.total.specialists.mod.2, catPred = df$canopy.condition)
 testZeroInflation(res.total.specialists.mod.2)
 
@@ -114,7 +114,7 @@ total.insects.mod1 <- glmer(relevantfam.abundance ~ dbh + ash.species +
 # check assumptions
 testDispersion(total.insects.mod1)
 res.total.insects.mod.1 <- simulateResiduals(total.insects.mod1)
-plot(res.total.insects.mod.1)
+plotQQunif(res.total.insects.mod.1)
 testCategorical(res.total.insects.mod.1, catPred = df$ash.species)
 plotResiduals(res.total.insects.mod.1, form = df$dbh)
 testZeroInflation(res.total.insects.mod.1)
@@ -132,7 +132,7 @@ total.insects.mod2 <- glmer(relevantfam.abundance ~ canopy.condition +
 # check assumptions
 testDispersion(total.insects.mod2)
 res.total.insects.mod.2 <- simulateResiduals(total.insects.mod2)
-plot(res.total.insects.mod.2)
+plotQQunif(res.total.insects.mod.2)
 testCategorical(res.total.insects.mod.2, catPred = df$canopy.condition)
 testZeroInflation(res.total.insects.mod.2)
 
@@ -170,7 +170,7 @@ rich.mod1 <- glmer(specialist.richness ~ dbh + ash.species +
 # check assumptions
 testDispersion(rich.mod1)
 res.rich.mod.1 <- simulateResiduals(rich.mod1)
-plot(res.rich.mod.1)
+plotQQunif(res.rich.mod.1)
 testCategorical(res.rich.mod.1, catPred = df$ash.species)
 plotResiduals(res.rich.mod.1, form = df$dbh)
 testZeroInflation(res.rich.mod.1)
@@ -188,7 +188,7 @@ rich.mod2 <- glmer(specialist.richness ~ canopy.condition +
 # check assumptions
 testDispersion(rich.mod2)
 res.rich.mod.2 <- simulateResiduals(rich.mod2)
-plot(res.rich.mod.2)
+plotQQunif(res.rich.mod.2)
 testCategorical(res.rich.mod.2, catPred = df$ash.species)
 testCategorical(res.rich.mod.2, catPred = df$canopy.condition)
 testZeroInflation(res.rich.mod.2)
@@ -204,34 +204,34 @@ stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, add = TR
            vertical = TRUE, method = "jitter", jitter = 0.2)
 
 
-png("Figures/Specialists_canopy_condition_panel.png", width = 2300, height = 2000, pointsize = 30)
+png("Figures/Specialists_canopy_condition_panel.png", width = 2500, height = 2500, pointsize = 30)
 
 par(mfrow=c(2,1))
 par(mar=c(5,7,1,2))
 
 boxplot(specialist.abundance ~ canopy.condition, data = df,
         col = c("#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#238B45"),
-        ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 1.6, cex.axis = 1.5)
-stripchart(specialist.abundance ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
+        ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 2, cex.axis = 1.7)
+stripchart(specialist.abundance ~ canopy.condition, data = df, pch = 19, cex = 2.2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-text(5.5,4.5, "A", pos = 3, font = 2, cex = 1.5)
-text(1,4.2, "a", pos = 3, font = 1, cex = 1.2)
-text(5,4.2, "b", pos = 3, font = 1, cex = 1.2)
-text(2,3.2, "ab", pos = 3, font = 1, cex = 1.2)
-text(3,3.2, "ab", pos = 3, font = 1, cex = 1.2)
-text(4,2.2, "ab", pos = 3, font = 1, cex = 1.2)
+text(5.55,4.7, "A", pos = 3, font = 2, cex = 2)
+text(1,4.2, "a", pos = 3, font = 1, cex = 1.6)
+text(5,4.2, "b", pos = 3, font = 1, cex = 1.6)
+text(2,3.2, "ab", pos = 3, font = 1, cex = 1.6)
+text(3,3.2, "ab", pos = 3, font = 1, cex = 1.6)
+text(4,2.2, "ab", pos = 3, font = 1, cex = 1.6)
 
 boxplot(specialist.richness ~ canopy.condition, data = df,
         col = c("#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#2171B5"),
-        ylim = c(0,4), ylab = "Specialist Richness", xlab = "Canopy Condition", cex.lab = 1.6, cex.axis = 1.5)
-stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, cex = 2, add = TRUE,
+        ylim = c(0,4), ylab = "Specialist Richness", xlab = "Canopy Condition", cex.lab = 2, cex.axis = 1.7)
+stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, cex = 2.2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-text(5.5,3.6, "B", pos = 3, font = 2, cex = 1.5)
-text(1,3.2, "a", pos = 3, font = 1, cex = 1.2)
-text(4,1.2, "b", pos = 3, font = 1, cex = 1.2)
-text(5,1.2, "b", pos = 3, font = 1, cex = 1.2)
-text(2,2.2, "ab", pos = 3, font = 1, cex = 1.2)
-text(3,2.2, "ab", pos = 3, font = 1, cex = 1.2)
+text(5.55,3.75, "B", pos = 3, font = 2, cex = 2)
+text(1,3.2, "a", pos = 3, font = 1, cex = 1.6)
+text(4,1.2, "b", pos = 3, font = 1, cex = 1.6)
+text(5,1.2, "b", pos = 3, font = 1, cex = 1.6)
+text(2,2.2, "ab", pos = 3, font = 1, cex = 1.6)
+text(3,2.2, "ab", pos = 3, font = 1, cex = 1.6)
 
 dev.off()
 
