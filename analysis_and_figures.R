@@ -235,33 +235,37 @@ stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, add = TR
 png("Figures/Specialists_canopy_condition_panel.png", width = 2500, height = 2500, pointsize = 30)
 
 par(mfrow=c(2,1))
-par(mar=c(5,7,1,2))
+par(bty = "n")
+par(mar=c(5,7,0.5,2))
+# c(bottom, left, top, right)
 
 boxplot(specialist.abundance ~ canopy.condition, data = df,
         col = c("#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#238B45"),
-        ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 2, cex.axis = 1.7)
+        ylim = c(0,5), ylab = "Specialist Abundance", xlab = "", cex.lab = 2, cex.axis = 1.7, xaxt = "n")
+axis(side = 1, labels = FALSE)
 stripchart(specialist.abundance ~ canopy.condition, data = df, pch = 19, cex = 2.2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-text(5.55,4.7, "A", pos = 3, font = 2, cex = 2)
-text(1,4.2, "a", pos = 3, font = 1, cex = 1.6)
-text(5,4.2, "b", pos = 3, font = 1, cex = 1.6)
-text(2,3.2, "ab", pos = 3, font = 1, cex = 1.6)
-text(3,3.2, "ab", pos = 3, font = 1, cex = 1.6)
-text(4,2.2, "ab", pos = 3, font = 1, cex = 1.6)
+text(0.45,4.7, "A", pos = 3, font = 2, cex = 2.4)
+text(1,4.2, "a", pos = 3, font = 1, cex = 2)
+text(5,4.2, "b", pos = 3, font = 1, cex = 2)
+text(2,3.2, "ab", pos = 3, font = 1, cex = 2)
+text(3,3.2, "ab", pos = 3, font = 1, cex = 2)
+text(4,2.2, "ab", pos = 3, font = 1, cex = 2)
 
 boxplot(specialist.richness ~ canopy.condition, data = df,
         col = c("#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#2171B5"),
         ylim = c(0,4), ylab = "Specialist Richness", xlab = "Canopy Condition", cex.lab = 2, cex.axis = 1.7)
 stripchart(specialist.richness ~ canopy.condition, data = df, pch = 19, cex = 2.2, add = TRUE,
            vertical = TRUE, method = "jitter", jitter = 0.2)
-text(5.55,3.75, "B", pos = 3, font = 2, cex = 2)
-text(1,3.2, "a", pos = 3, font = 1, cex = 1.6)
-text(4,1.2, "b", pos = 3, font = 1, cex = 1.6)
-text(5,1.2, "b", pos = 3, font = 1, cex = 1.6)
-text(2,2.2, "ab", pos = 3, font = 1, cex = 1.6)
-text(3,2.2, "ab", pos = 3, font = 1, cex = 1.6)
+text(0.45,3.75, "B", pos = 3, font = 2, cex = 2.4)
+text(1,3.2, "a", pos = 3, font = 1, cex = 2)
+text(4,1.2, "b", pos = 3, font = 1, cex = 2)
+text(5,1.2, "b", pos = 3, font = 1, cex = 2)
+text(2,2.2, "ab", pos = 3, font = 1, cex = 2)
+text(3,2.2, "ab", pos = 3, font = 1, cex = 2)
 
 dev.off()
+
 
 ################################################################################
 # rarefaction analysis
